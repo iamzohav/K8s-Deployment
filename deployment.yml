@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deployment
+  name: deployment1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: frontend1
   template:
     metadata:
       labels:
-        app: frontend
+        app: frontend1
     spec:
       containers:
-      - name: frontend
+      - name: frontend-cont
         image: vinod3939/vinu:hibye
         ports:
         - containerPort: 80
@@ -22,13 +22,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-service
+  name: f-service
 spec:
   type: NodePort
   selector:
-    app: myapp
+    app: frontend1
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 30082   # use a different port
+      nodePort: 30085   # use a different port
